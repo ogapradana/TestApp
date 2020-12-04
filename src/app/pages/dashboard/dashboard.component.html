@@ -1,0 +1,122 @@
+<app-subheader [title]="'Dashboard'">
+    <!-- start :: tag listing -->
+    <div toolbar class="dropdown dropdown-inline my-3 my-sm-0">
+        <!-- start :: tag button -->
+        <a *ngIf="selectedTag !== 'Tags'" (click)="clearTag()" class="btn p-3 btn-danger font-weight-bolder btn-sm mr-2">
+            <i class="fa fa-trash mr-2"></i>
+            Clear Tag
+        </a>
+        <a href="#" class="btn p-3 btn-primary font-weight-bolder btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-tags mr-2"></i>
+            {{selectedTag}}
+        </a>
+        <!-- end :: tag button -->
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 m-0" style="z-index: 2;">
+            <ul class="navi navi-hover">
+                <li class="navi-header font-weight-bold py-4">
+                    <span class="font-size-lg">Choose Tags:</span>
+                </li>
+                <li class="navi-separator mb-3 opacity-70"></li>
+                <div class="scroll mr-3" (scroll)="onScroll($event)">
+                    <!-- start :: tag foreach -->
+                    <li *ngFor="let tag of tagsData" class="navi-item">
+                        <a (click)="filterTag(tag)" class="navi-link">
+                            <span class="navi-text">
+                                <span class="label label-xl label-inline label-light-success">
+                                    {{tag}}
+                                </span>
+                            </span>
+                        </a>
+                    </li>
+                    <!-- end :: tag foreach -->
+                    <li class="navi-item text-center" *ngIf="tagsSpinner === true">
+                        <app-spinner></app-spinner>
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <!-- end :: tag listing -->
+</app-subheader>
+<div class="row">
+    <!-- start :: post data -->
+    <div class="col-lg-4 col-sm-6 col-12 mb-7"  *ngFor="let data of postData">
+        <div class="card card-custom card-stretch">
+            <!-- start :: header post -->
+            <div class="card-header">
+                <div class="card-title">
+                    <div class="d-flex align-items-center my-2">
+                        <!-- start :: profile picture -->
+                        <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
+                            <div class="symbol symbol-circle">
+                                <img src="{{data.owner.picture}}" alt="image">
+                            </div>
+                        </div>
+                        <!-- end :: profile picture -->
+                        <!-- start :: post owner name -->
+                        <div class="d-flex flex-column" style="word-break: break-all;">
+                            <a [routerLink]="[ '../users-list', data.owner.id ,'profile']" href="#"
+                               class="text-dark font-weight-bold text-hover-primary font-size-h5 mb-0">
+                               {{data.owner.firstName}} {{data.owner.lastName}}
+                            </a>
+                            <span class="text-muted font-size-sm">{{data.owner.email}}</span>
+                        </div>
+                        <!-- end :: post owner name -->
+                    </div>
+                </div>
+            </div>
+            <!-- end :: header post -->
+            <!-- start body post -->
+            <div class="card-body p-0">
+                <!-- start :: main image post-->
+                <div style="max-height: 200px; overflow: hidden;">
+                    <img lightbox [simpleMode]="true" src="{{data.image}}" class="mw-100 w-full">
+                </div>
+                <!-- end :: main image post -->
+                <div class="m-5">
+                    <!-- start :: like & date row -->
+                    <div class="row mt-5 mx-1 mb-3 font-size-lg">
+                        <div class="col-4">
+                            <i class="fa fa-heart mr-2"></i>
+                            <span>{{ data['likes']}}</span>
+                        </div>
+                        <div class="col-8">
+                            <span class="float-right">{{ data['publishDate'] | date:'mediumDate'}}</span>
+                        </div>
+                    </div>
+                    <!-- end :: like & date row -->
+                    <div class="row">
+                        <span class="mx-5 mb-5">
+                            {{data.text}}
+                        </span>
+                    </div>
+                    <!-- start :: post tag -->
+                    <div class="row mx-1">
+                        <a (click)="filterTag(tags)" *ngFor="let tags of data.tags" 
+                              class="mt-2 mt-sm-1 label label-outline-primary label-inline mr-2 mr-2">
+                              #{{tags}}
+                        </a>
+                    </div>
+                    <!-- end :: post tag -->
+                    <a [routerLink]="['../post', data.id, 'detail']"
+                            class="float-right btn btn-primary my-5 float-right">
+                            <i class="fa fa-comment-alt"></i> Comment
+                    </a>
+                </div>
+            </div>
+            <!-- end :: body post -->
+        </div>
+    </div>
+    <!-- end :: post data -->
+
+    <!-- start :: spinner  -->
+    <div *ngIf="postSpinner === true" class="col-lg-4 col-sm-3 col-12">
+        <div class="card card-custom card-stretch gutter-b">
+            <div class="card-body text-light-dark font-weight-bold d-flex align-items-center mx-auto font-size-h5">
+                <app-spinner></app-spinner>
+            </div>
+        </div>
+    </div>
+    <!-- end :: spinner -->
+
+</div>

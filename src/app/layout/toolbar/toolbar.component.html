@@ -1,0 +1,46 @@
+<div id="kt_header" class="header flex-column header-fixed">
+    <div class="header-top">
+        <div class="container">
+            <div class="d-none d-lg-flex align-items-center mr-3">
+                <a  href="https://github.com/ogapradana" target="_blank" class="mr-20">
+                    <div class="btn btn-icon btn-hover-transparent-white w-sm-auto d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
+                        <img alt="Logo" src="assets/media/logos/Avatar.png" class="max-h-35px" style="border-radius: 100%;">
+                        <div class="d-flex flex-column text-left pl-sm-3">
+                            <span class="text-white opacity-50 font-weight-bold font-size-sm d-none d-sm-inline">Oga Pradana</span>
+                            <span class="text-white font-weight-bolder font-size-sm d-none d-sm-inline">Front End Developer</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="topbar bg-primary">
+                <div class="topbar-item">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="container">
+            <div class="header-navs header-navs-left" id="kt_header_navs">
+                <div class="tab-content">
+                    <div class="tab-pane py-5 p-lg-0 show active" id="kt_header_tab_1">
+                        <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+                            <ul class="menu-nav">
+                                <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true">
+                                    <a [routerLink]="['dashboard']" class="menu-link">
+                                        <span class="menu-text">Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item" routerLinkActive="menu-item-active" aria-haspopup="true">
+                                    <a [routerLink]="['users-list']" class="menu-link">
+                                        <span class="menu-text">Users List</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./assets/css/style.bundle.css";
+@import "./assets/plugins/global/plugins.bundle.css";
+@import "./assets/plugins/custom/prismjs/prismjs.bundle.css";
+
+.disable-click {
+    pointer-events: none;
+    cursor: default;
+}
+.fa-heart{
+    color: #e74c3c;
+}

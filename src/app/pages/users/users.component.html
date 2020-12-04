@@ -1,0 +1,42 @@
+<app-subheader [title]="'Users'"></app-subheader>
+<div class="d-flex  flex-column-fluid">
+    <div class="container">
+        <div class="row">
+            <!-- start :: foreach user -->
+            <div *ngFor="let d of data" class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                <div class="card card-custom gutter-b card-stretch">
+                    <div class="card-body text-center pt-4">
+                        <!-- start :: user profile -->
+                        <div class="mt-7">
+                            <div class="symbol symbol-circle symbol-lg-75">
+                                <img src="{{d.picture}}" alt="image" />
+                            </div>
+                        </div>
+                        <!-- end :: user profile -->
+                        <!-- start :: user name & email -->
+                        <div class="my-2">
+                            <a href="#" [routerLink]="[d.id ,'profile']" class="text-dark font-weight-bold text-hover-primary font-size-h4">{{d.firstName}}</a>
+                        </div>
+                        <span class="text-muted font-weight-bold">{{d.email}}</span>
+                        <!-- emd :: user name & email -->
+                        <!-- start :: navigate profile button -->
+                        <div class="mt-9 mb-6">
+                            <a href="#" [routerLink]="[d.id ,'profile']" class="btn btn-block btn-sm btn-light-primary font-weight-bolder text-uppercase py-4">View Profile</a>
+                        </div>
+                        <!-- end :: navigate profile button -->
+                    </div>
+                </div>
+            </div>
+            <!-- end :: foreach user -->
+            <!-- start :: spinner -->
+            <div *ngIf="spinner === true" class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                <div class="card card-custom gutter-b" style="height: 300px;">
+                    <div class="card-body text-center d-flex align-items-center mx-auto">
+                        <app-spinner></app-spinner>
+                    </div>
+                </div>
+            </div>
+            <!-- end :: spinner -->
+        </div>
+    </div>
+</div>

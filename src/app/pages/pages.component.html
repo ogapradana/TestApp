@@ -1,0 +1,21 @@
+<div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-row flex-column-fluid page">
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            <app-toolbar></app-toolbar>
+            <div class="content d-flex flex-column flex-column-fluid pt-0" id="kt_content">
+                <div class="d-flex flex-column-fluid">
+                    <div class="container">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-spinner 
+    bdColor = "rgb(16,176,255)"
+    size = "medium"
+    color = "#fff"
+    type = "ball-pulse"
+    [fullScreen] = "true">
+</ngx-spinner>

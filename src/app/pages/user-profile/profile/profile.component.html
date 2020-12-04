@@ -1,0 +1,82 @@
+<div class="card card-custom">
+    <div class="card-header">
+        <div class="card-title">
+            <h3 class="card-label">About</h3>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="d-flex align-items-center flex-wrap">
+            <div class="row">
+                <!-- start :: gender data -->
+                <div class="col-md-6 p-2">
+                    <div class="d-flex align-items-center flex-md-fill">
+                        <span class="mr-4">
+                            <i class="flaticon-piggy-bank icon-2x text-muted font-weight-bold"></i>
+                        </span>
+                        <div class="d-flex flex-column text-dark-75">
+                            <span class="font-weight-bolder font-size-sm">Gender</span>
+                            <span class="font-weight-bolder font-size-h5">{{userData['gender']}}</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- end :: gender data -->
+                <!-- start :: date of birth data-->
+                <div class="col-md-6 p-2">
+                    <div class="d-flex align-items-center flex-md-fill mr-5 my-1">
+                        <span class="mr-4">
+                            <i class="flaticon-confetti icon-2x text-muted font-weight-bold"></i>
+                        </span>
+                        <div class="d-flex flex-column text-dark-75">
+                            <span class="font-weight-bolder font-size-sm">Date Of Birth</span>
+                            <span class="font-weight-bolder font-size-h5">{{userData['dateOfBirth'] | date:'mediumDate'}}</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- end :: date of birth data -->
+                <!-- start :: register date data-->
+                <div class="col-md-6 p-2">
+                    <div class="d-flex align-items-center flex-md-fill mr-5 my-1">
+                        <span class="mr-4">
+                            <i class="flaticon-pie-chart icon-2x text-muted font-weight-bold"></i>
+                        </span>
+                        <div class="d-flex flex-column text-dark-75">
+                            <span class="font-weight-bolder font-size-sm">Register Date</span>
+                            <span class="font-weight-bolder font-size-h5">{{userData['registerDate'] | date:'mediumDate'}}</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- end :: register date data -->
+                <!-- start :: phone number data -->
+                <div class="col-md-6 p-2">
+                    <div class="d-flex align-items-center flex-md-fill mr-5 my-1">
+                        <span class="mr-4">
+                            <i class="flaticon-pie-chart icon-2x text-muted font-weight-bold"></i>
+                        </span>
+                        <div class="d-flex flex-column text-dark-75">
+                            <span class="font-weight-bolder font-size-sm">Phone</span>
+                            <span class="font-weight-bolder font-size-h5">{{userData['phone']}}</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- end :: phone number data -->
+                <!-- start :: address data -->
+                <div class="col-12 p-2">
+                    <div class="d-flex align-items-center flex-md-fill mr-5 my-1">
+                        <span class="mr-4">
+                            <i class="flaticon-pie-chart icon-2x text-muted font-weight-bold"></i>
+                        </span>
+                        <div class="d-flex flex-column text-dark-75">
+                            <span class="font-weight-bolder font-size-sm">Address</span>
+                            <div class="font-weight-bolder font-size-h5">
+                                <span>
+                                    {{address['city']}}, {{address['country']}}, {{address['street']}}, {{address['state']}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end :: address data -->
+            </div>
+        </div>
+    </div>
+</div>

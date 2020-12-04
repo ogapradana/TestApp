@@ -1,0 +1,93 @@
+<app-subheader [title]="'Users'"></app-subheader>
+<div class="d-flex align-items-start flex-wrap">
+    <div class="card card-custom mt-5" style="width: 100%;">
+        <div class="row">
+            <!-- start :: post image -->
+            <div class="col-md-8">
+                <div class="main-pic d-flex align-items-center" style="height: 100%;">
+                    <img lightbox [simpleMode]="true" src="{{postData['image']}}" class="mw-100 w-full" style="text-align: center;">
+                </div>
+            </div>
+            <!-- end :: post image -->
+            <div class="col-md-4">
+                <div class="card-header pl-9 pl-md-0 pt-2 pt-sm-6" style="border-bottom: 0px;">
+                    <div class="card-title mb-0">
+                        <div class="d-flex align-items-center my-2">
+                            <!--start :: profile pic-->
+                            <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
+                                <div class="symbol symbol-circle">
+                                    <img src="{{ownerPost['picture']}}" alt="image">
+                                </div>
+                            </div>
+                            <!--end :: profile pic-->
+                            <!--start :: post owner name-->
+                            <div class="d-flex flex-column" style="word-break: break-all;">
+                                <a href="#" 
+                                   [routerLink]="['../../../', 'users-list', ownerPost['id'], 'profile']"
+                                   class="text-dark font-weight-bold text-hover-primary font-size-h5 mb-0">
+                                   {{ownerPost['firstName']}} {{ownerPost['lastName']}}
+                                </a>
+                                <span class="text-muted font-size-sm">{{ownerPost['email']}}</span>
+                            </div>
+                            <!--end :: post owner name-->
+                        </div>
+                        <div class="row">
+                            <span class="mx-5 mb-5">
+                                {{postData['text']}}
+                            </span>
+                        </div>
+                        <!-- start :: page tags -->
+                        <span *ngFor="let tags of postData['tags']" 
+                              class="mt-2 mt-sm-1 label label-outline-primary label-pill label-inline mr-2">
+                              #{{tags}}
+                        </span>
+                        <!-- end :: page tags -->
+                        <!-- start :: like & date row -->
+                        <div class="row mt-5 font-size-lg">
+                            <div class="col-4">
+                                <i class="fa fa-heart mr-2"></i>
+                                <span>{{ postData['likes']}}</span>
+                            </div>
+                            <div class="col-8">
+                                <span class="float-right">{{ postData['publishDate'] | date:'mediumDate'}}</span>
+                            </div>
+                        </div>
+                        <!-- end :: like & date row -->
+                    </div>
+                </div>
+                <!-- start :: comment session -->
+                <span class="font-weight-bolder font-size-h3 text-dark mb-5 ml-10 ml-sm-0">Comments</span>
+                <div class="card-body p-0 mx-9 mx-sm-0 mt-3 scroll" style="margin-right: 10px!important;">
+                    <!-- if no comment -->
+                    <div class="d-flex align-items-center my-2" *ngIf="commentData == []">
+                        No Comment
+                    </div>
+                    <!-- else -->
+                    <div *ngFor="let comment of commentData">
+                        <div class="d-flex align-items-center mt-5">
+                            <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
+                                <div class="symbol symbol-circle">
+                                    <img src="{{comment['owner'].picture}}" alt="image">
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column" style="word-break: break-all;">
+                                <a href="#"
+                                   [routerLink]="['../../../', 'users-list', comment['owner'].id, 'profile']"
+                                   class="text-dark font-weight-bold text-hover-primary font-size-h5 mb-0">
+                                    {{comment['owner'].firstName}} {{comment['owner'].lastName}}
+                                </a>
+                                <span class="text-muted font-size-sm">{{comment['publishDate'] | date:'mediumDate'}}</span>
+                            </div>
+                        </div>
+                        <div class="row  m-0 m-sm-3">
+                            <div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left">
+                                {{comment['message']}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end :: comment session -->
+            </div>
+        </div>
+    </div>
+</div>

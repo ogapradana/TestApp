@@ -1,0 +1,178 @@
+<app-subheader [title]="'User Profile'"></app-subheader>
+<div class="d-flex  flex-column-fluid">
+    <div class="container">
+        <div class="card card-custom gutter-b">
+            <!-- start :: profile page -->
+            <div class="card-body rounded p-0 d-flex bg-light">
+                <div class="d-flex flex-column flex-lg-row-auto w-auto w-md-650px py-10 py-md-14 px-0 px-md-20 pr-lg-0">
+                    <div class="row">
+                        <div class="col-sm-4 mb-md-n30 ml-lg-0 ml-sm-10 ml-0">
+                            <!-- start :: profile image -->
+                            <div class="text-center mb-7 mb-sm-0">
+                                <img src="{{userData['picture']}}" class="mw-100 w-200px" style="border-radius: 100%!important;" alt="image">
+                            </div>
+                            <!-- end :: profile image -->
+                        </div>
+                        <!-- start :: user name -->
+                        <div class="col-sm-7 mt-sm-12 text-sm-left text-center mx-sm-0 mx-2" style="word-break: break-all;">
+                            <h1 class="font-weight-bolder text-dark">{{userData['firstName']}} {{userData['lastName']}}</h1>
+                            <div class="font-size-h4">{{userData['email']}}</div>
+                        </div>
+                        <!-- end :: user name -->
+                    </div>
+                </div>
+                <div class="d-none d-md-flex flex-row-fluid bgi-no-repeat bgi-position-y-center bgi-position-x-left bgi-size-cover" style="background-image: url(assets/media/svg/illustrations/copy.svg);"></div>
+            </div>
+            <!-- end :: profile page -->
+
+            <!-- start :: tab menu -->
+            <div class="card-toolbar m-5">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-0"></div>
+                    <div class="col-xl-10 col-lg-9 col-md-8 col-12 pl-lg-18 pl-md-0">
+                        <ul class="nav nav-bold nav-pills pl-lg-10 pl-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#kt_tab_pane_7_1">
+                                    <span class="nav-icon">
+                                        <i class="fa fa-address-card"></i>
+                                    </span>
+                                    <span class="nav-text">About</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_7_2">
+                                    <span class="nav-icon">
+                                        <i class="fa fa-comments"></i>
+                                    </span>
+                                    <span class="nav-text">Timeline</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- end :: tab menu -->
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8">
+                <div class="tab-content">
+                    <!-- start :: profile tab -->
+                    <div class="tab-pane fade active show"  id="kt_tab_pane_7_1" role="tabpanel" aria-labelledby="kt_tab_pane_7_1">
+                        <app-profile [userData]='userData' [address]='address'></app-profile>    
+                    </div>
+                    <!-- end :: profile tab -->
+                    <!-- start :: post tab -->
+                    <div class="tab-pane fade" id="kt_tab_pane_7_2" role="tabpanel" aria-labelledby="kt_tab_pane_7_2">
+                        <div class="d-flex align-items-start flex-wrap">
+                            <span class="font-weight-bolder font-size-h3 text-dark ml-3">{{userData['firstName']}} Activity</span>
+                            <!-- start :: post data -->
+                            <div class="card card-custom mt-5" *ngFor="let data of postData">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <div class="d-flex align-items-center my-2">
+                                            <!-- start :: post owner profile pic-->
+                                            <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
+                                                <div class="symbol symbol-circle">
+                                                    <img src="{{data.owner.picture}}" alt="image">
+                                                </div>
+                                            </div>
+                                            <!-- end :: post owner profile pic-->
+                                            <!-- start :: post owner name-->
+                                            <div class="d-flex flex-column" style="word-break: break-all;">
+                                                <a href="#" class="disable-click text-dark font-weight-bold text-hover-primary font-size-h5 mb-0">
+                                                    {{data.owner.firstName}} {{data.owner.lastName}}
+                                                </a>
+                                                <span class="text-muted font-size-sm">{{data.owner.email}}</span>
+                                            </div>
+                                            <!-- end :: post owner name-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- start :: post body -->
+                                <div class="card-body p-0">
+                                    <!-- start :: post image -->
+                                    <div style="max-height: 500px; overflow: hidden;">
+                                        <img lightbox [simpleMode]="true"  src="{{data.image}}" class="mw-100 w-full">
+                                    </div>
+                                    <!-- end :: post image -->
+                                    <div class="m-5 m-md-8">
+                                        <!-- start :: like & date -->
+                                        <div class="row mt-5 mx-1 mb-3 font-size-lg">
+                                            <div class="col-4">
+                                                <i class="fa fa-heart mr-2"></i>
+                                                <span>{{ data.likes}}</span>
+                                            </div>
+                                            <div class="col-8">
+                                                <span class="float-right">{{ data.publishDate | date:'mediumDate'}}</span>
+                                            </div>
+                                        </div>
+                                        <!-- end :: like & date -->
+                                        <!-- start :: text post -->
+                                        <div class="row">
+                                            <span class="mx-5 mb-5">
+                                                {{data.text}}
+                                            </span>
+                                        </div>
+                                        <!-- end :: text post -->
+                                        <div class="row">
+                                            <!-- start :: tag post -->
+                                            <div class="col-lg-9 col-sm-8">
+                                                <span *ngFor="let tags of data.tags" 
+                                                      class="mt-2 mt-sm-1 label label-outline-primary label-pill label-inline mr-2">
+                                                      #{{tags}}
+                                                </span>
+                                            </div>
+                                            <!-- end :: tag post -->
+                                            <div class="col-lg-3 col-sm-4">
+                                                <a [routerLink]="['../../../post', data.id, 'detail']" class="btn btn-primary float-right btn-block mt-sm-0 mt-4">
+                                                    <i class="fa fa-comment-alt"></i> Comment
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end :: post body -->
+                            </div>
+                            <!-- end :: post data -->
+                        </div>
+                    </div>
+                    <!-- end :: post tab -->
+                </div>
+            </div>
+            <!-- start :: user suggestion tab -->
+            <div class="col-md-4 mt-5 mt-md-0">
+                <div class="card card-custom">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <h3 class="card-label">User Suggestions</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- start :: foreach user -->
+                        <div *ngFor="let user of users" class="d-flex align-items-center mb-4">
+                            <!-- start :: profile pic user -->
+                            <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
+                                <div class="symbol symbol-circle">
+                                    <img src="{{user.picture}}" alt="image">
+                                </div>
+                            </div>
+                            <!-- end :: profile pic user -->
+                            <!-- start :: user name -->
+                            <div class="d-flex flex-column" style="word-break: break-all;">
+                                <a (click)="fetchUserDetail(user.id, true)" [routerLink]="['../../', user.id, 'profile']"
+                                   class="text-dark font-weight-bold text-hover-primary font-size-h5 mb-0">
+                                    {{user.firstName}} {{user.lastName}}
+                                </a>
+                                <span class="text-muted font-size-sm">{{user.email}}</span>
+                            </div>
+                            <!-- end :: user name -->
+                        </div>
+                        <!-- end :: foreach user -->
+                    </div>
+                </div>
+            </div>
+            <!-- end :: user suggestion tab -->
+        </div>
+    </div>
+</div>
