@@ -8,4 +8,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## App ID
 
-Convigure APP ID from https://dummyapi.io at env
+Configure APP ID from https://dummyapi.io at env
