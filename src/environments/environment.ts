@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   host: 'https://dummyapi.io/data/api/',
-  appId: '5fc85ac2f281e87d189c5e2e'
+  appId: '5fc890bc36fd9780b2603324'
 };
 
 /*
