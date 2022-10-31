@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  host: 'https://dummyapi.io/data/api/',
-  appId: '5fc890bc36fd9780b2603324'
+  host: 'https://dummyapi.io/data/v1/',
+  appId: '635f737ae59c584107ae9d6f'
 };
 
 /*
